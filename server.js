@@ -1,4 +1,5 @@
 import express from "express";
+import pool from "./db.js";
 
 const app = express();
 const PORT = 5000;
@@ -58,4 +59,13 @@ app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
-// Endpoints DB
+// Endpoints DB => GET
+
+app.get("/api/clientes", async (req, res) => {
+  try {
+    // código a probar
+    const { rows } = await pool.query("SELECT * FROM clientes");
+  } catch (error) {
+    console.log(error);
+  }
+});
